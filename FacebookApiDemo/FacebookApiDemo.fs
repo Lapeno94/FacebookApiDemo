@@ -6,20 +6,15 @@ open Nancy.Hosting.Self
 open Nancy.Extensions
 
 module Rest =
-    type GetRequestParams() =
-        member val ``hub.mode`` = "" with get, set
-        member val ``hub.challenge`` = "" with get, set
-        member val ``hub.verify_token`` = "" with get, set
-
     type FacebookApiModule() as this =
         inherit NancyModule()
 
         do
-            this.Get.["/"] <- fun parameters ->
-                let arguments = parameters :?> GetRequestParams
+            this.Get.["/hub.mode={mode}&hub.challenge={challenge}&hub.verify_token={token}"] <- fun parameters ->
+                let arguments = parameters :?> Nancy.DynamicDictionary
                 printfn "GET Request arrived: Mode:%A Challenge:%A Token:%A" 
-                    arguments.``hub.mode`` arguments.``hub.challenge`` arguments.``hub.verify_token``
-                arguments.``hub.challenge`` :> obj
+                    arguments.["mode"] arguments.["challenge"] arguments.["token"]
+                arguments.["challenge"]
 
             this.Post.["/"] <- fun _ ->
                 let body = this.Request.Body.AsString()
