@@ -20,7 +20,7 @@ module Rest =
                 printfn "GET Request arrived: Mode:%A Challenge:%A Token:%A" mode challenge token
                 challenge
 
-            this.Post.["/"] <- fun _ ->
+            this.Post.["/fb"] <- fun _ ->
                 let body = this.Request.Body.AsString()
                 printfn "POST Request arrived:\n%A" body
                 [] :> obj
