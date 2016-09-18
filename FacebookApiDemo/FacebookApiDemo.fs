@@ -10,7 +10,7 @@ module Rest =
         inherit NancyModule()
 
         do
-            this.Get.["/"] <- fun parameters ->
+            this.Get.["/fb"] <- fun parameters ->
                 let query = this.Request.Query :?> Nancy.DynamicDictionary
                 let mode = query.["hub.mode"]
                 let challenge = query.["hub.challenge"]
