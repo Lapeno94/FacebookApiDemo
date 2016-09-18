@@ -10,11 +10,15 @@ module Rest =
         inherit NancyModule()
 
         do
-            this.Get.["/hub.mode={mode}&hub.challenge={challenge}&hub.verify_token={token}"] <- fun parameters ->
+            this.Get.["/"] <- fun parameters ->
+                let query = this.Request.Query :?> Nancy.DynamicDictionary
+                let mode = query.["hub.mode"]
+                let challenge = query.["hub.challenge"]
+                let token = query.["hub.verify_token"]
+                
                 let arguments = parameters :?> Nancy.DynamicDictionary
-                printfn "GET Request arrived: Mode:%A Challenge:%A Token:%A" 
-                    arguments.["mode"] arguments.["challenge"] arguments.["token"]
-                arguments.["challenge"]
+                printfn "GET Request arrived: Mode:%A Challenge:%A Token:%A" mode challenge token
+                challenge
 
             this.Post.["/"] <- fun _ ->
                 let body = this.Request.Body.AsString()
