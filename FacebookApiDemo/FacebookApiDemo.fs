@@ -17,7 +17,7 @@ module Rest =
                 let token = query.["hub.verify_token"]
                 
                 let arguments = parameters :?> Nancy.DynamicDictionary
-                printfn "GET Request arrived: Mode:%A Challenge:%A Token:%A" mode challenge token
+                printfn "GET request arrived: Mode:%A Challenge:%A Token:%A" mode challenge token
                 challenge
 
             this.Post.["/fb"] <- fun _ ->
