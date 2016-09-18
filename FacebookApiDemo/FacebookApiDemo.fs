@@ -22,7 +22,7 @@ module Rest =
 
             this.Post.["/fb"] <- fun _ ->
                 let body = this.Request.Body.AsString()
-                printfn "POST Request arrived:\n%A" body
+                printfn "POST request arrived:\n%A" body
                 [] :> obj
 
 module MainModule =
