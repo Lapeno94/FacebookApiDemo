@@ -37,5 +37,6 @@ module MainModule =
         host.Start()
         printfn "Running on %A" url
 
-        Console.ReadLine() |> ignore
+        while true do
+            Console.ReadLine() |> ignore
         0
