@@ -21,8 +21,17 @@ module Rest =
                 challenge
 
             this.Post.["/fb"] <- fun _ ->
+                printfn "POST request arrived:"
+
+                let headers = this.Request.Headers
+                headers
+                |> Seq.iter (fun keyValuePair -> printfn "%A: %A" keyValuePair.Key keyValuePair.Value)
+
+                printfn ""
+
                 let body = this.Request.Body.AsString()
-                printfn "POST request arrived:\n%A" body
+                printfn "%A" body
+
                 [] :> obj
 
 module MainModule =
