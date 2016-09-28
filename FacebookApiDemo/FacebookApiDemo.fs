@@ -11,17 +11,7 @@ module Rest =
         inherit NancyModule()
 
         do
-            this.Get.["/fb"] <- fun parameters ->
-                let query = this.Request.Query :?> Nancy.DynamicDictionary
-                let mode = query.["hub.mode"]
-                let challenge = query.["hub.challenge"]
-                let token = query.["hub.verify_token"]
-                
-                let arguments = parameters :?> Nancy.DynamicDictionary
-                printfn "GET request arrived: Mode:%A Challenge:%A Token:%A" mode challenge token
-                challenge
-
-            this.Post.["/fb"] <- fun _ ->
+            this.Post.["/"] <- fun _ ->
                 printfn "POST request arrived:"
 
                 let headers = this.Request.Headers
