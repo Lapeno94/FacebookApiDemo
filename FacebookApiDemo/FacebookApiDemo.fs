@@ -11,7 +11,7 @@ module Rest =
         inherit NancyModule()
 
         do
-            this.Post.["/"] <- fun _ ->
+            this.Post.["/fb"] <- fun _ ->
                 printfn "POST request arrived:"
 
                 let headers = this.Request.Headers
