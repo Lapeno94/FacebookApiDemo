@@ -12,16 +12,16 @@ module Rest =
 
         do
             this.Post.["/fb"] <- fun _ ->
-                printfn "POST request arrived:"
+                printfn "----------------------------------------------------------\nPOST request arrived:"
 
                 let headers = this.Request.Headers
                 headers
-                |> Seq.iter (fun keyValuePair -> printfn "%A: %A" keyValuePair.Key keyValuePair.Value)
+                |> Seq.iter (fun keyValuePair -> printfn "%s: %A" keyValuePair.Key (String.concat ", " keyValuePair.Value))
 
                 printfn ""
 
                 let body = this.Request.Body.AsString()
-                printfn "%A" body
+                printfn "%s" body
 
                 [] :> obj
 
