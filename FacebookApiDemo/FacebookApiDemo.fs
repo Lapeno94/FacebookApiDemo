@@ -4,6 +4,7 @@ open System
 open Nancy
 open Nancy.Hosting.Self
 open Nancy.Extensions
+open System.Threading
 
 module Rest =
     type FacebookApiModule() as this =
@@ -47,5 +48,5 @@ module MainModule =
         printfn "Running on %A" url
 
         while true do
-            Console.ReadLine() |> ignore
+            Thread.Sleep(10000)
         0
